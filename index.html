@@ -159,7 +159,7 @@
   .hood p{color:rgba(246,241,231,.74)}
   .walk{list-style:none;padding:0;margin:26px 0 0}
   .walk li{display:flex;align-items:baseline;gap:16px;padding:14px 0;border-top:1px solid rgba(246,241,231,.16)}
-  .walk li .min{font-family:var(--serif);font-size:1.4rem;color:var(--gold-br);flex:none;width:84px}
+  .walk li .min{font-family:var(--serif);font-size:1.4rem;color:var(--gold-br);flex:none;width:84px;white-space:nowrap}
   .walk li .pl{color:rgba(246,241,231,.86);font-size:1rem}
   .map-card{border-radius:10px;overflow:hidden;border:1px solid rgba(246,241,231,.18);background:#0f1830}
   .map-card iframe{width:100%;height:330px;border:0;display:block;filter:saturate(.9)}
@@ -252,9 +252,6 @@
     .hero-grid{grid-template-columns:1fr}
     .hero-figure{max-width:440px;margin:8px auto 0}
     .hero-vlabel{display:none}
-    .stats .row{grid-template-columns:repeat(2,1fr)}
-    .stat{border-left:0;border-top:1px solid var(--rule);padding-left:0}
-    .stat:first-child,.stat:nth-child(2){border-top:0}
     .feat-grid{grid-template-columns:1fr 1fr}
     .property,.property.flip{grid-template-columns:1fr}
     .property .pinfo,.property.flip .pinfo{order:0}
@@ -274,6 +271,24 @@
     .hero-cta .btn{flex:1;justify-content:center}
     .lb .lb-nav{width:44px;height:44px}
     .lb .prev{left:8px}.lb .next{right:8px}
+    /* keep long eyebrow labels from overflowing narrow screens */
+    .eyebrow{flex-wrap:wrap;max-width:100%;letter-spacing:.14em}
+    /* hero tag back inside the frame bounds */
+    .hero-tag{left:12px;right:12px;bottom:12px}
+    /* 3-stat strip stacks cleanly, single hairline per row */
+    .stats .row{grid-template-columns:1fr}
+    .stat{border-left:0;border-top:1px solid var(--rule);padding:18px 0}
+    .stat:first-child{border-top:0;padding-top:4px}
+    /* map toggle: wrap + ≥44px tap targets */
+    .map-toggle{flex-wrap:wrap}
+    .map-toggle button{flex:1 1 auto;min-height:44px}
+    /* map foot stacks; directions button full width + tappable */
+    .map-foot{flex-direction:column;align-items:stretch;gap:12px}
+    .map-foot .btn{justify-content:center;min-height:44px}
+    /* comfortable form tap targets */
+    .field input,.field select{min-height:44px}
+    /* reserve room so centered bar text never collides with the × */
+    .bar .wrap{padding-left:34px;padding-right:34px}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
