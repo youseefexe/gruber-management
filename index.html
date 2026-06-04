@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gruber Management | Clean &amp; Quiet Apartments Near the University of Michigan</title>
+<meta name="description" content="Clean, quiet apartments a short walk from Central Campus in Ann Arbor. Family-owned for 50 years. On-site parking and laundry, 9-month leases, roommate matching. (734) 668-1111.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16233f;          /* deep navy ink */
+    --ink-2:#26395f;
+    --paper:#f6f1e7;        /* warm ivory */
+    --paper-deep:#ece3d2;   /* deeper cream section */
+    --card:#fffdf8;         /* card surface */
+    --gold:#bd8729;         /* brass / amber accent */
+    --gold-br:#dca33a;      /* brighter gold */
+    --muted:#56607a;        /* muted text */
+    --rule:rgba(22,35,63,.14);
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --sans:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+    --mono:'Space Mono','SFMono-Regular',Menlo,monospace;
+    --maxw:1180px;
+    --r:5px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  /* paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--gold);color:#fff}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  h1,h2,h3{font-family:var(--serif);font-weight:400;font-optical-sizing:auto;letter-spacing:-.01em;margin:0}
+  p{margin:0 0 1.1em}
+  .lede{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--muted);max-width:60ch}
+
+  /* eyebrow / section label */
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.6em;font-weight:700}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);display:inline-block}
+
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--sans);font-weight:700;font-size:.94rem;letter-spacing:.01em;padding:14px 24px;border-radius:var(--r);border:1.6px solid transparent;cursor:pointer;transition:transform .25s var(--ease),background .25s var(--ease),color .25s var(--ease),box-shadow .25s var(--ease)}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-gold{background:var(--gold);color:#fff;box-shadow:0 8px 22px -10px rgba(189,135,41,.8)}
+  .btn-gold:hover{background:var(--gold-br)}
+  .btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  .btn-sm{padding:10px 16px;font-size:.85rem}
+
+  /* ===== announcement bar ===== */
+  .bar{background:var(--ink);color:var(--paper);font-size:.82rem;letter-spacing:.02em}
+  .bar .wrap{display:flex;align-items:center;justify-content:center;gap:.7em;padding-top:10px;padding-bottom:10px;position:relative;text-align:center}
+  .bar .dot{width:7px;height:7px;border-radius:50%;background:var(--gold-br);flex:none;box-shadow:0 0 0 4px rgba(220,163,58,.18)}
+  .bar b{font-weight:700}
+  .bar .x{position:absolute;right:24px;background:none;border:0;color:var(--paper);opacity:.6;cursor:pointer;font-size:1.1rem;line-height:1}
+  .bar .x:hover{opacity:1}
+
+  /* ===== nav ===== */
+  header.nav{position:sticky;top:0;z-index:200;background:rgba(246,241,231,.78);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s,box-shadow .3s}
+  header.nav.scrolled{border-bottom-color:var(--rule);box-shadow:0 1px 0 rgba(0,0,0,.02)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px}
+  .brand{display:flex;flex-direction:column;line-height:1;gap:3px}
+  .brand .name{font-family:var(--serif);font-size:1.42rem;font-weight:500;letter-spacing:-.02em}
+  .brand .sub{font-family:var(--mono);font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a.lk{font-size:.92rem;font-weight:600;color:var(--ink);position:relative;padding:4px 0}
+  .nav-links a.lk::after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1.5px;background:var(--gold);transition:width .28s var(--ease)}
+  .nav-links a.lk:hover::after{width:100%}
+  .nav-phone{display:inline-flex;align-items:center;gap:.5em;font-family:var(--mono);font-weight:700;font-size:.9rem}
+  .burger{display:none;background:none;border:1.5px solid var(--ink);border-radius:var(--r);width:44px;height:40px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+  .burger span{width:18px;height:2px;background:var(--ink);display:block;transition:.3s}
+  .mobile-menu{display:none;border-top:1px solid var(--rule);background:var(--paper)}
+  .mobile-menu a{display:block;padding:15px 28px;border-bottom:1px solid var(--rule);font-weight:600}
+  .mobile-menu a:last-child{border-bottom:0}
+
+  /* ===== hero ===== */
+  .hero{position:relative;padding:clamp(48px,7vw,96px) 0 clamp(40px,5vw,72px)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,64px);align-items:center}
+  .hero h1{font-size:clamp(2.6rem,6.4vw,5.1rem);line-height:.98;font-weight:400;margin:.32em 0 .42em}
+  .hero h1 .num{font-style:italic;color:var(--gold);font-weight:500}
+  .hero .lede{margin-bottom:2em}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-figure{position:relative}
+  .hero-figure .frame{position:relative;border-radius:8px;overflow:hidden;background:linear-gradient(150deg,#2a3a5e,#16233f);aspect-ratio:4/5;box-shadow:0 40px 70px -38px rgba(22,35,63,.6);border:1px solid var(--rule)}
+  .hero-figure .frame img{width:100%;height:100%;object-fit:cover}
+  .hero-tag{position:absolute;left:-14px;bottom:26px;background:var(--card);border:1px solid var(--rule);border-radius:var(--r);padding:12px 16px;box-shadow:0 18px 40px -22px rgba(22,35,63,.55)}
+  .hero-tag .t1{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .hero-tag .t2{font-family:var(--serif);font-size:1.18rem}
+  .hero-vlabel{position:absolute;top:30px;right:-6px;font-family:var(--mono);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl}
+
+  /* stat strip */
+  .stats{margin-top:clamp(34px,5vw,60px);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .stats .row{display:grid;grid-template-columns:repeat(5,1fr)}
+  .stat{padding:22px 18px;border-left:1px solid var(--rule)}
+  .stat:first-child{border-left:0;padding-left:0}
+  .stat .k{font-family:var(--serif);font-size:1.5rem;line-height:1;color:var(--ink)}
+  .stat .v{font-size:.82rem;color:var(--muted);margin-top:6px}
+
+  /* ===== generic section ===== */
+  section.block{padding:clamp(64px,9vw,128px) 0}
+  .sec-head{max-width:64ch;margin-bottom:clamp(34px,4vw,56px)}
+  .sec-head h2{font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.04;margin:.5em 0 .35em}
+  .gold-rule{width:54px;height:2px;background:var(--gold)}
+
+  /* why grid */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+  .feat{background:var(--paper);padding:34px 30px;transition:background .3s}
+  .feat:hover{background:var(--card)}
+  .feat .idx{font-family:var(--mono);font-size:.72rem;color:var(--gold);letter-spacing:.12em}
+  .feat h3{font-size:1.32rem;margin:14px 0 10px;font-weight:500}
+  .feat p{font-size:.98rem;color:var(--muted);margin:0}
+
+  /* ===== residences ===== */
+  .property{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(28px,4vw,60px);align-items:center;margin-bottom:clamp(56px,7vw,104px)}
+  .property:last-child{margin-bottom:0}
+  .property.flip .pinfo{order:2}
+  .ploc{font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .property h3{font-size:clamp(1.9rem,3.4vw,2.7rem);line-height:1.02;margin:.4em 0 .55em}
+  .specs{display:flex;flex-direction:column;gap:12px;margin:0 0 24px;padding:22px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .spec{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+  .spec .label{font-size:.95rem;color:var(--muted)}
+  .spec .price{font-family:var(--serif);font-size:1.5rem;color:var(--ink);font-weight:500;white-space:nowrap}
+  .spec .price small{font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.04em}
+  .amen{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;padding:0;list-style:none}
+  .amen li{font-size:.82rem;font-weight:600;padding:7px 13px;border:1px solid var(--rule);border-radius:999px;color:var(--ink-2);background:var(--card)}
+  .amen li span{color:var(--gold);margin-right:6px}
+
+  .mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:10px;height:clamp(300px,40vw,470px)}
+  .shot{position:relative;overflow:hidden;border-radius:6px;border:0;padding:0;cursor:pointer;background:linear-gradient(150deg,#33456b,#1a2949);height:100%;width:100%}
+  .shot:first-child{grid-column:1/3;grid-row:1/3}
+  .shot img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),opacity .4s}
+  .shot:hover img{transform:scale(1.06)}
+  .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(22,35,63,.32));opacity:0;transition:opacity .3s}
+  .shot:hover::after{opacity:1}
+  .shot .more{position:absolute;inset:0;background:rgba(22,35,63,.62);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.4rem;letter-spacing:.02em}
+  .shot:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+  /* ===== neighborhood ===== */
+  .hood{background:var(--ink);color:var(--paper)}
+  .hood .eyebrow{color:var(--gold-br)}
+  .hood .gold-rule{background:var(--gold-br)}
+  .hood h2{color:var(--paper)}
+  .hood-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,56px);align-items:center}
+  .hood p{color:rgba(246,241,231,.74)}
+  .walk{list-style:none;padding:0;margin:26px 0 0}
+  .walk li{display:flex;align-items:baseline;gap:16px;padding:14px 0;border-top:1px solid rgba(246,241,231,.16)}
+  .walk li .min{font-family:var(--serif);font-size:1.4rem;color:var(--gold-br);flex:none;width:84px}
+  .walk li .pl{color:rgba(246,241,231,.86);font-size:1rem}
+  .map-card{border-radius:10px;overflow:hidden;border:1px solid rgba(246,241,231,.18);background:#0f1830}
+  .map-card iframe{width:100%;height:330px;border:0;display:block;filter:saturate(.9)}
+  .map-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;flex-wrap:wrap}
+  .map-foot .addr{font-size:.9rem;color:rgba(246,241,231,.8);font-family:var(--mono);letter-spacing:.02em}
+
+  /* ===== apply ===== */
+  .apply{background:var(--paper-deep)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-bottom:44px}
+  .step .n{font-family:var(--serif);font-size:2.6rem;color:var(--gold);line-height:1;font-style:italic}
+  .step h3{font-size:1.16rem;margin:10px 0 8px;font-weight:600}
+  .step p{font-size:.93rem;color:var(--muted);margin:0}
+  .docs{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .doc{display:inline-flex;align-items:center;gap:.55em;font-weight:600;font-size:.92rem;padding:12px 18px;background:var(--card);border:1px solid var(--rule);border-radius:var(--r);transition:transform .25s var(--ease),border-color .25s}
+  .doc:hover{transform:translateY(-2px);border-color:var(--gold)}
+  .doc span{color:var(--gold);font-family:var(--mono);font-size:.78rem}
+  .appt-note{margin-top:30px;font-size:.92rem;color:var(--muted);display:flex;align-items:center;gap:.6em}
+  .appt-note b{color:var(--ink)}
+
+  /* ===== reputation ===== */
+  .rep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .quote{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:28px}
+  .quote .mark{font-family:var(--serif);font-size:2.4rem;color:var(--gold);line-height:.6}
+  .quote p{font-family:var(--serif);font-size:1.12rem;line-height:1.45;font-style:italic;color:var(--ink);margin:.4em 0 1em}
+  .quote .who{font-size:.82rem;color:var(--muted);font-weight:600}
+  .rep-cta{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px;align-items:center}
+  .stars{color:var(--gold-br);letter-spacing:2px;font-size:1.05rem}
+
+  /* ===== contact ===== */
+  .contact{background:var(--ink);color:var(--paper)}
+  .contact .eyebrow{color:var(--gold-br)}
+  .contact h2{color:var(--paper)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,72px)}
+  .cinfo .big-phone{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);color:var(--paper);display:inline-block;margin:.2em 0 .1em;letter-spacing:-.01em}
+  .cinfo .big-phone:hover{color:var(--gold-br)}
+  .cinfo .leave{color:var(--gold-br);font-size:.95rem;margin-bottom:1.6em}
+  .cinfo .meta{color:rgba(246,241,231,.72);font-size:.98rem;line-height:1.7}
+  .cinfo .meta b{color:var(--paper);font-weight:600}
+  .socials{display:flex;gap:12px;margin-top:24px}
+  .socials a{font-size:.85rem;font-weight:600;padding:10px 16px;border:1px solid rgba(246,241,231,.28);border-radius:var(--r);transition:.25s}
+  .socials a:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+
+  form{background:rgba(246,241,231,.05);border:1px solid rgba(246,241,231,.16);border-radius:10px;padding:28px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(246,241,231,.66);margin-bottom:7px;font-weight:600}
+  .field input,.field select,.field textarea{width:100%;background:rgba(246,241,231,.04);border:1px solid rgba(246,241,231,.22);border-radius:var(--r);padding:12px 14px;color:var(--paper);font-family:var(--sans);font-size:.96rem;transition:border-color .25s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--gold-br)}
+  .field textarea{resize:vertical;min-height:96px}
+  .field select option{color:#111}
+  .form-msg{display:none;background:rgba(220,163,58,.14);border:1px solid var(--gold-br);border-radius:var(--r);padding:14px 16px;font-size:.92rem;color:var(--paper);margin-top:4px}
+  .form-msg.show{display:block}
+
+  /* ===== footer ===== */
+  footer.foot{background:var(--paper);border-top:1px solid var(--rule);position:relative;overflow:hidden}
+  .foot-wm{position:absolute;left:50%;bottom:-.32em;transform:translateX(-50%);font-family:var(--serif);font-size:clamp(5rem,20vw,16rem);color:var(--ink);opacity:.04;white-space:nowrap;pointer-events:none;line-height:.8;font-weight:500}
+  .foot .wrap{position:relative;padding-top:54px;padding-bottom:54px}
+  .foot-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:40px}
+  .foot .brand .name{color:var(--ink)}
+  .foot-links{display:flex;gap:28px;flex-wrap:wrap;font-size:.9rem;font-weight:600}
+  .foot-links a:hover{color:var(--gold)}
+  .foot-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;padding-top:24px;border-top:1px solid var(--rule);font-size:.8rem;color:var(--muted)}
+  .foot-bot .tags{display:flex;gap:8px;flex-wrap:wrap}
+  .foot-bot .tags span{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+
+  /* ===== lightbox ===== */
+  .lb{position:fixed;inset:0;z-index:1000;background:rgba(11,18,38,.93);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+  .lb.open{display:flex;opacity:1}
+  .lb img{max-width:88vw;max-height:80vh;border-radius:6px;box-shadow:0 30px 80px -20px rgba(0,0,0,.7)}
+  .lb .lb-x{position:absolute;top:22px;right:26px;background:none;border:0;color:#fff;font-size:2rem;cursor:pointer;opacity:.8;line-height:1}
+  .lb .lb-x:hover{opacity:1}
+  .lb .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;width:54px;height:54px;border-radius:50%;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .lb .lb-nav:hover{background:rgba(255,255,255,.22)}
+  .lb .prev{left:24px}.lb .next{right:24px}
+  .lb .lb-cap{position:absolute;bottom:26px;left:0;right:0;text-align:center;color:rgba(255,255,255,.85);font-family:var(--mono);font-size:.8rem;letter-spacing:.1em}
+
+  /* ===== reveal animation ===== */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}
+
+  /* ===== responsive ===== */
+  @media(max-width:920px){
+    .nav-links{display:none}
+    .burger{display:flex}
+    .mobile-menu.show{display:block}
+    .hero-grid{grid-template-columns:1fr}
+    .hero-figure{max-width:440px;margin:8px auto 0}
+    .hero-vlabel{display:none}
+    .stats .row{grid-template-columns:repeat(2,1fr)}
+    .stat{border-left:0;border-top:1px solid var(--rule);padding-left:0}
+    .stat:first-child,.stat:nth-child(2){border-top:0}
+    .feat-grid{grid-template-columns:1fr 1fr}
+    .property,.property.flip{grid-template-columns:1fr}
+    .property .pinfo,.property.flip .pinfo{order:0}
+    .hood-grid,.contact-grid,.rep-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:560px){
+    body{font-size:16px}
+    .wrap{padding:0 20px}
+    .bar .x{right:14px}
+    .feat-grid{grid-template-columns:1fr}
+    .rep-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .mosaic{grid-template-columns:repeat(2,1fr);grid-template-rows:none;height:auto}
+    .shot{aspect-ratio:4/3;height:auto}
+    .shot:first-child{grid-column:1/3;grid-row:auto}
+    .hero-cta .btn{flex:1;justify-content:center}
+    .lb .lb-nav{width:44px;height:44px}
+    .lb .prev{left:8px}.lb .next{right:8px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- announcement -->
+<div class="bar" id="bar">
+  <div class="wrap">
+    <span class="dot"></span>
+    <span>Now leasing for <b>Fall 2026</b> &nbsp;·&nbsp; Ask us about our <b>9-month leases</b></span>
+    <button class="x" id="barX" aria-label="Dismiss">×</button>
+  </div>
+</div>
+
+<!-- nav -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Gruber Management home">
+      <span class="name">Gruber Management</span>
+      <span class="sub">Ann Arbor · Est. 50 Years</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="lk" href="#residences">Residences</a>
+      <a class="lk" href="#why">Why Gruber</a>
+      <a class="lk" href="#neighborhood">Neighborhood</a>
+      <a class="lk" href="#apply">Apply</a>
+      <a class="btn btn-gold btn-sm nav-phone" href="tel:+17346681111">☏ (734) 668-1111</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#residences">Residences</a>
+    <a href="#why">Why Gruber</a>
+    <a href="#neighborhood">Neighborhood</a>
+    <a href="#apply">Apply</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:+17346681111">Call (734) 668-1111</a>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow reveal in">Ann Arbor · Steps from the University of Michigan</span>
+        <h1 class="reveal in d1">Making the grade<br>for <span class="num">50</span> years.</h1>
+        <p class="lede reveal in d2">Clean, quiet apartments a short walk from Central Campus. Non-smoking, no pets. A calm place to live, study, and actually sleep before an 8&nbsp;a.m. lecture.</p>
+        <div class="hero-cta reveal in d3">
+          <a class="btn btn-gold" href="#residences">View residences</a>
+          <a class="btn btn-ghost" href="tel:+17346681111">Call us</a>
+        </div>
+      </div>
+      <div class="hero-figure reveal in d2">
+        <span class="hero-vlabel">A half-century on campus</span>
+        <div class="frame">
+          <img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/3fdd833a-a811-4fc7-8013-897b5c4325de/IMG_5306.JPG?format=1200w" alt="Apartment building at 625 South Forest in Ann Arbor" onerror="this.style.display='none'">
+        </div>
+        <div class="hero-tag">
+          <div class="t1">Featured · Central Campus</div>
+          <div class="t2">625 South Forest · 2–3 BR</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- stats -->
+    <div class="stats reveal">
+      <div class="row">
+        <div class="stat"><div class="k">50 yrs</div><div class="v">Family-owned in Ann Arbor</div></div>
+        <div class="stat"><div class="k">2</div><div class="v">Buildings near campus</div></div>
+        <div class="stat"><div class="k">Parking</div><div class="v">On-site &amp; covered</div></div>
+        <div class="stat"><div class="k">9-mo</div><div class="v">Lease terms available</div></div>
+        <div class="stat"><div class="k">Match</div><div class="v">Roommate matching</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- why -->
+<section class="block" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">01 · Why Gruber</span>
+      <h2>Built for people who came here to study.</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal"><div class="idx">01</div><h3>Clean &amp; quiet, by policy</h3><p>Non-smoking, no pets, and genuinely well-kept buildings. The kind of quiet that makes a full course load survivable.</p></div>
+      <div class="feat reveal d1"><div class="idx">02</div><h3>Walk to Central Campus</h3><p>Live on South Forest and Hill, minutes from the Diag, the Law Quad, and South University dining.</p></div>
+      <div class="feat reveal d2"><div class="idx">03</div><h3>Parking &amp; laundry on-site</h3><p>On-site or covered parking and an in-building laundry room at every address. No permit hunt, no laundromat runs.</p></div>
+      <div class="feat reveal"><div class="idx">04</div><h3>Fifty years, one town</h3><p>Half a century managing apartments in Ann Arbor. We answer the phone, and we know every building inside out.</p></div>
+      <div class="feat reveal d1"><div class="idx">05</div><h3>Roommate matching</h3><p>Splitting rent? We help match compatible roommates so a two-bedroom works for everyone in it.</p></div>
+      <div class="feat reveal d2"><div class="idx">06</div><h3>Straightforward leases</h3><p>Flexible 9-month terms and clear paperwork. Read a sample lease and addendum before you ever sign.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- residences -->
+<section class="block" id="residences" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">02 · Residences</span>
+      <h2>Two addresses, right where you want to be.</h2>
+      <div class="gold-rule"></div>
+      <p class="lede" style="margin-top:18px">Both buildings sit in the heart of the campus neighborhood. Tap any photo to see the full gallery.</p>
+    </div>
+
+    <!-- Property 1 -->
+    <div class="property reveal">
+      <div class="pinfo">
+        <div class="ploc">Central Campus · South University</div>
+        <h3>625 / 629 / 631<br>South Forest</h3>
+        <div class="specs">
+          <div class="spec"><span class="label">625: 3 Bedrooms</span><span class="price">$3,500 <small>/mo</small></span></div>
+          <div class="spec"><span class="label">629 &amp; 631: 2 Bedrooms</span><span class="price">$1,950–3,200 <small>/mo</small></span></div>
+        </div>
+        <ul class="amen">
+          <li><span>●</span>On-site parking</li>
+          <li><span>●</span>Laundry room</li>
+          <li><span>●</span>Steps to South U dining</li>
+          <li><span>●</span>Non-smoking · no pets</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact" data-prop="625 South Forest (2–3 BR)">Inquire about South Forest</a>
+      </div>
+      <div class="mosaic" data-gallery="forest">
+        <button class="shot" data-gallery="forest" data-index="0" aria-label="Open South Forest photo 1"><img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/3fdd833a-a811-4fc7-8013-897b5c4325de/IMG_5306.JPG?format=900w" alt="625 South Forest exterior" loading="lazy" onerror="this.style.display='none'"></button>
+        <button class="shot" data-gallery="forest" data-index="1" aria-label="Open South Forest photo 2"><img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/eaacb4dd-d380-4486-8132-c2a741449c43/FullSizeRender.jpeg?format=750w" alt="629/631 South Forest" loading="lazy" onerror="this.style.display='none'"></button>
+        <button class="shot" data-gallery="forest" data-index="2" aria-label="Open South Forest photo 3"><img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/9f96db49-abe3-4c10-ac07-bc28674aa3a3/IMG_2285.jpeg?format=750w" alt="South Forest interior" loading="lazy" onerror="this.style.display='none'"></button>
+        <button class="shot" data-gallery="forest" data-index="3" aria-label="Open South Forest photo 4"><img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/e374f23b-3bd4-4088-a33e-f3d705a93545/IMG_9395.JPG?format=750w" alt="South Forest room" loading="lazy" onerror="this.style.display='none'"></button>
+        <button class="shot" data-gallery="forest" data-index="4" aria-label="Open South Forest photo 5"><img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/9daabda5-743e-48ad-aa6c-a01597c11441/IMG_4376.JPG?format=750w" alt="South Forest space" loading="lazy" onerror="this.style.display='none'"></button>
+      </div>
+    </div>
+
+    <!-- Property 2 -->
+    <div class="property flip reveal">
+      <div class="pinfo">
+        <div class="ploc">Hill Street · Quiet residential block</div>
+        <h3>507 Hill</h3>
+        <div class="specs">
+          <div class="spec"><span class="label">1 Bedrooms</span><span class="price">$1,490–1,790 <small>/mo</small></span></div>
+          <div class="spec"><span class="label">Bi-level 1 Bedrooms</span><span class="price">$1,850–2,000 <small>/mo</small></span></div>
+        </div>
+        <ul class="amen">
+          <li><span>●</span>Covered parking</li>
+          <li><span>●</span>Laundry room</li>
+          <li><span>●</span>Quiet residential street</li>
+          <li><span>●</span>Non-smoking · no pets</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contact" data-prop="507 Hill (1 BR)">Inquire about 507 Hill</a>
+      </div>
+      <div class="mosaic" data-gallery="hill">
+        <button class="shot" data-gallery="hill" data-index="0" aria-label="Open 507 Hill photo 1"><img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/8e0f55d7-2817-4a0c-89cd-35171c856f08/IMG_1787.JPG?format=900w" alt="507 Hill exterior" loading="lazy" onerror="this.style.display='none'"></button>
+        <button class="shot" data-gallery="hill" data-index="1" aria-label="Open 507 Hill photo 2"><img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/75036be4-ad3f-4728-80a1-6f4ec734c0e9/IMG_0746.JPG?format=750w" alt="507 Hill" loading="lazy" onerror="this.style.display='none'"></button>
+        <button class="shot" data-gallery="hill" data-index="2" aria-label="Open 507 Hill photo 3"><img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/02b8d8da-29ce-4ace-83ec-5e6d8d5ee5b4/IMG_1537.JPG?format=750w" alt="507 Hill interior" loading="lazy" onerror="this.style.display='none'"></button>
+        <button class="shot" data-gallery="hill" data-index="3" aria-label="Open 507 Hill photo 4"><img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/58fb1e66-7cda-4be9-b3a2-c6dfe00c5e76/IMG_2920.jpeg?format=750w" alt="507 Hill room" loading="lazy" onerror="this.style.display='none'"></button>
+        <button class="shot" data-gallery="hill" data-index="4" aria-label="Open 507 Hill gallery, more photos"><img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/f828d429-e90c-46c6-a503-d84055b5a4a7/IMG_4840.JPG?format=750w" alt="507 Hill space" loading="lazy" onerror="this.style.display='none'"><span class="more">+1 more</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- neighborhood -->
+<section class="block hood" id="neighborhood">
+  <div class="wrap">
+    <div class="hood-grid">
+      <div class="reveal">
+        <span class="eyebrow">03 · The Neighborhood</span>
+        <h2 style="font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.04;margin:.5em 0 .35em">In the middle of everything, set back from the noise.</h2>
+        <div class="gold-rule"></div>
+        <p style="margin-top:18px">The South University and Hill Street area is the quiet edge of campus life: close enough to walk to class, far enough to hear yourself think. Cafés, groceries, and the bus lines are all within a few blocks.</p>
+        <ul class="walk">
+          <li><span class="min">~5 min</span><span class="pl">Walk to the Diag &amp; Central Campus</span></li>
+          <li><span class="min">~2 min</span><span class="pl">South University shops &amp; dining</span></li>
+          <li><span class="min">~10 min</span><span class="pl">Downtown &amp; Main Street restaurants</span></li>
+          <li><span class="min">Nearby</span><span class="pl">Law Quad, Ross School, UMMA, bus routes</span></li>
+        </ul>
+      </div>
+      <div class="map-card reveal d1">
+        <iframe title="Map of 625 South Forest, Ann Arbor" loading="lazy" src="https://www.google.com/maps?q=625%20South%20Forest%20Ave,%20Ann%20Arbor,%20MI%2048104&output=embed"></iframe>
+        <div class="map-foot">
+          <span class="addr">625 South Forest · Ann Arbor, MI 48104</span>
+          <a class="btn btn-gold btn-sm" href="https://www.google.com/maps/search/?api=1&query=625+South+Forest+Ave+Ann+Arbor+MI+48104" target="_blank" rel="noopener">Get directions ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- apply -->
+<section class="block apply" id="apply">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">04 · How to apply</span>
+      <h2>Four steps to your keys.</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">1</div><h3>Browse &amp; call</h3><p>Pick a building, then call to set up a tour at a time that works for you.</p></div>
+      <div class="step reveal d1"><div class="n">2</div><h3>Apply</h3><p>Fill out the application, front and back, and send it our way.</p></div>
+      <div class="step reveal d2"><div class="n">3</div><h3>Review the lease</h3><p>Read a sample lease and addendum so there are no surprises before signing.</p></div>
+      <div class="step reveal d3"><div class="n">4</div><h3>Move in</h3><p>Sign, pick up your keys, and settle into a clean, quiet place near campus.</p></div>
+    </div>
+    <div class="docs reveal">
+      <a class="doc" href="https://www.grubermanagement.com/s/Yellow-ad-sheet-2026.pdf" target="_blank" rel="noopener"><span>PDF</span> Current Listings</a>
+      <a class="doc" href="https://www.grubermanagement.com/s/Application-Front-2026.pdf" target="_blank" rel="noopener"><span>PDF</span> Application (Front)</a>
+      <a class="doc" href="https://www.grubermanagement.com/s/Application-Back-2026.pdf" target="_blank" rel="noopener"><span>PDF</span> Application (Back)</a>
+      <a class="doc" href="https://www.grubermanagement.com/s/F-lease-sample.pdf" target="_blank" rel="noopener"><span>PDF</span> Sample Lease</a>
+      <a class="doc" href="https://www.grubermanagement.com/s/F-Addendum-sample.pdf" target="_blank" rel="noopener"><span>PDF</span> Sample Addendum</a>
+    </div>
+    <div class="appt-note reveal"><span>☏</span><span>Please <b>call for an appointment</b> rather than knocking on residents' doors. Reach us at <b>(734) 668-1111</b>.</span></div>
+  </div>
+</section>
+
+<!-- reputation -->
+<section class="block" id="reputation">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">05 · Reputation</span>
+      <h2>Fifty years. A lot of Wolverines.</h2>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="rep-grid">
+      <div class="quote reveal"><div class="mark">“</div><p>Quiet building, responsive management, and a five-minute walk to class. Renewed for a second year.</p><div class="who">Resident review</div></div>
+      <div class="quote reveal d1"><div class="mark">“</div><p>The on-site laundry and parking made it so much easier than my old place. Everything just worked.</p><div class="who">Resident review</div></div>
+      <div class="quote reveal d2"><div class="mark">“</div><p>They actually answer the phone and follow through. After 50 years, they clearly know what they're doing.</p><div class="who">Resident review</div></div>
+    </div>
+    <div class="rep-cta reveal">
+      <span class="stars">★★★★★</span>
+      <a class="btn btn-gold" href="https://www.google.com/search?q=gruber+management+ann+arbor+reviews" target="_blank" rel="noopener">Read our Google reviews ↗</a>
+      <a class="btn btn-ghost" href="https://www.facebook.com/grubermgt" target="_blank" rel="noopener">Visit us on Facebook</a>
+    </div>
+  </div>
+</section>
+
+<!-- contact -->
+<section class="block contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="cinfo reveal">
+        <span class="eyebrow">06 · Contact</span>
+        <h2 style="font-size:clamp(2rem,4.4vw,3.2rem);margin:.4em 0 .25em">Come see a place.</h2>
+        <div class="gold-rule"></div>
+        <a class="big-phone" href="tel:+17346681111">(734) 668-1111</a>
+        <div class="leave">Please leave us a message and we'll call you back.</div>
+        <div class="meta">
+          <b>Office</b><br>
+          625 South Forest<br>
+          Ann Arbor, MI 48104<br><br>
+          <b>Roommate matching</b> available on request.<br>
+          Clean &amp; quiet · Non-smoking · No pets.
+        </div>
+        <div class="socials">
+          <a href="https://www.facebook.com/grubermgt" target="_blank" rel="noopener">Facebook ↗</a>
+          <a href="https://www.google.com/search?q=gruber+management+ann+arbor+reviews" target="_blank" rel="noopener">Google Reviews ↗</a>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <form id="cform" novalidate>
+          <div class="field"><label for="f-name">Name</label><input id="f-name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="f-phone">Phone</label><input id="f-phone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="f-prop">I'm interested in</label>
+            <select id="f-prop">
+              <option>625 South Forest (2–3 BR)</option>
+              <option>507 Hill (1 BR)</option>
+              <option>Roommate matching</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" placeholder="Move-in timing, questions, anything else…"></textarea></div>
+          <button class="btn btn-gold" type="submit" style="width:100%;justify-content:center">Send inquiry</button>
+          <div class="form-msg" id="formMsg">Thanks! We've noted your inquiry. For the fastest response, call us now at <b>(734) 668-1111</b>.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer class="foot">
+  <div class="foot-wm">Gruber</div>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="brand">
+        <span class="name" style="font-size:1.5rem">Gruber Management</span>
+        <span class="sub" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)">Ann Arbor · Est. 50 Years</span>
+      </div>
+      <div class="foot-links">
+        <a href="#residences">Residences</a>
+        <a href="#why">Why Gruber</a>
+        <a href="#neighborhood">Neighborhood</a>
+        <a href="#apply">Apply</a>
+        <a href="https://www.grubermanagement.com/s/Yellow-ad-sheet-2026.pdf" target="_blank" rel="noopener">Listings (PDF)</a>
+        <a href="tel:+17346681111">(734) 668-1111</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Gruber Management · 625 South Forest, Ann Arbor, MI 48104</span>
+      <span class="tags"><span>Clean</span><span>Quiet</span><span>Non-smoking</span><span>No pets</span></span>
+    </div>
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-x" id="lbX" aria-label="Close">×</button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Previous">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-nav next" id="lbNext" aria-label="Next">›</button>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var B = 'https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/';
+  var GAL = {
+    forest: [
+      {full:B+'3fdd833a-a811-4fc7-8013-897b5c4325de/IMG_5306.JPG?format=2200w', cap:'625 South Forest · Exterior'},
+      {full:B+'eaacb4dd-d380-4486-8132-c2a741449c43/FullSizeRender.jpeg?format=2200w', cap:'629 / 631 South Forest'},
+      {full:B+'9f96db49-abe3-4c10-ac07-bc28674aa3a3/IMG_2285.jpeg?format=2200w', cap:'South Forest · Interior'},
+      {full:B+'e374f23b-3bd4-4088-a33e-f3d705a93545/IMG_9395.JPG?format=2200w', cap:'South Forest'},
+      {full:B+'9daabda5-743e-48ad-aa6c-a01597c11441/IMG_4376.JPG?format=2200w', cap:'South Forest'}
+    ],
+    hill: [
+      {full:B+'8e0f55d7-2817-4a0c-89cd-35171c856f08/IMG_1787.JPG?format=2200w', cap:'507 Hill · Exterior'},
+      {full:B+'75036be4-ad3f-4728-80a1-6f4ec734c0e9/IMG_0746.JPG?format=2200w', cap:'507 Hill'},
+      {full:B+'02b8d8da-29ce-4ace-83ec-5e6d8d5ee5b4/IMG_1537.JPG?format=2200w', cap:'507 Hill · Interior'},
+      {full:B+'58fb1e66-7cda-4be9-b3a2-c6dfe00c5e76/IMG_2920.jpeg?format=2200w', cap:'507 Hill'},
+      {full:B+'f828d429-e90c-46c6-a503-d84055b5a4a7/IMG_4840.JPG?format=2200w', cap:'507 Hill'},
+      {full:B+'83270cf4-f68a-467f-962b-89e9f5ef9627/IMG_9318.JPG?format=2200w', cap:'507 Hill'}
+    ]
+  };
+
+  // ---- announcement dismiss ----
+  var barX = document.getElementById('barX'), bar = document.getElementById('bar');
+  if(barX) barX.addEventListener('click', function(){ bar.style.display='none'; });
+
+  // ---- sticky nav shadow ----
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // ---- mobile menu ----
+  var burger = document.getElementById('burger'), mm = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function(){
+    var open = mm.classList.toggle('show');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  Array.prototype.forEach.call(mm.querySelectorAll('a'), function(a){
+    a.addEventListener('click', function(){ mm.classList.remove('show'); burger.setAttribute('aria-expanded','false'); });
+  });
+
+  // ---- preselect contact property from inquire buttons ----
+  Array.prototype.forEach.call(document.querySelectorAll('[data-prop]'), function(btn){
+    btn.addEventListener('click', function(){
+      var sel = document.getElementById('f-prop'); var val = btn.getAttribute('data-prop');
+      if(sel){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].value===val||sel.options[i].text===val){ sel.selectedIndex=i; break; } } }
+    });
+  });
+
+  // ---- contact form (no storage; in-memory only) ----
+  var form = document.getElementById('cform');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = document.getElementById('f-name'), email = document.getElementById('f-email');
+      if(!name.value.trim()){ name.focus(); return; }
+      if(!email.value.trim()){ email.focus(); return; }
+      document.getElementById('formMsg').classList.add('show');
+      form.querySelector('button[type=submit]').textContent = 'Inquiry noted ✓';
+    });
+  }
+
+  // ---- lightbox ----
+  var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'),
+      lbCap = document.getElementById('lbCap'), lbX = document.getElementById('lbX'),
+      lbPrev = document.getElementById('lbPrev'), lbNext = document.getElementById('lbNext');
+  var curGal = null, curIdx = 0;
+
+  function render(){
+    var item = GAL[curGal][curIdx];
+    lbImg.src = item.full; lbImg.alt = item.cap;
+    lbCap.textContent = item.cap + '  ·  ' + (curIdx+1) + ' / ' + GAL[curGal].length;
+  }
+  function open(g,i){ curGal=g; curIdx=i; render(); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  function step(n){ var len=GAL[curGal].length; curIdx=(curIdx+n+len)%len; render(); }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.shot'), function(s){
+    s.addEventListener('click', function(){ open(s.getAttribute('data-gallery'), parseInt(s.getAttribute('data-index'),10)); });
+  });
+  lbX.addEventListener('click', close);
+  lbPrev.addEventListener('click', function(){ step(-1); });
+  lbNext.addEventListener('click', function(){ step(1); });
+  lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close();
+    else if(e.key==='ArrowLeft') step(-1);
+    else if(e.key==='ArrowRight') step(1);
+  });
+
+  // ---- scroll reveal ----
+  var revs = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    Array.prototype.forEach.call(revs, function(el){ if(!el.classList.contains('in')) io.observe(el); });
+  } else {
+    Array.prototype.forEach.call(revs, function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>
