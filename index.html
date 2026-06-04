@@ -252,6 +252,8 @@
     .hero-grid{grid-template-columns:1fr}
     .hero-figure{max-width:440px;margin:8px auto 0}
     .hero-vlabel{display:none}
+    /* stacked hero: tag becomes a normal block BELOW the frame (no overlap, no off-screen hang) */
+    .hero-tag{position:static;width:100%;margin:14px 0 0;box-shadow:0 10px 30px -20px rgba(22,35,63,.5)}
     .feat-grid{grid-template-columns:1fr 1fr}
     .property,.property.flip{grid-template-columns:1fr}
     .property .pinfo,.property.flip .pinfo{order:0}
@@ -272,9 +274,7 @@
     .lb .lb-nav{width:44px;height:44px}
     .lb .prev{left:8px}.lb .next{right:8px}
     /* keep long eyebrow labels from overflowing narrow screens */
-    .eyebrow{flex-wrap:wrap;max-width:100%;letter-spacing:.14em}
-    /* hero tag back inside the frame bounds */
-    .hero-tag{left:12px;right:12px;bottom:12px}
+    .eyebrow{flex-wrap:wrap;max-width:100%;letter-spacing:.12em}
     /* 3-stat strip stacks cleanly, single hairline per row */
     .stats .row{grid-template-columns:1fr}
     .stat{border-left:0;border-top:1px solid var(--rule);padding:18px 0}
