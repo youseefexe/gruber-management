@@ -96,6 +96,8 @@
   .hero-figure{position:relative}
   .hero-figure .frame{position:relative;border-radius:8px;overflow:hidden;background:linear-gradient(150deg,#2a3a5e,#16233f);aspect-ratio:4/5;box-shadow:0 40px 70px -38px rgba(22,35,63,.6);border:1px solid var(--rule)}
   .hero-figure .frame img{width:100%;height:100%;object-fit:cover}
+  .hero-figure .frame.xfade img{position:absolute;inset:0;opacity:0;transition:opacity 1s var(--ease)}
+  .hero-figure .frame.xfade img.on{opacity:1}
   .hero-tag{position:absolute;left:-14px;bottom:26px;background:var(--card);border:1px solid var(--rule);border-radius:var(--r);padding:12px 16px;box-shadow:0 18px 40px -22px rgba(22,35,63,.55)}
   .hero-tag .t1{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
   .hero-tag .t2{font-family:var(--serif);font-size:1.18rem}
@@ -103,7 +105,7 @@
 
   /* stat strip */
   .stats{margin-top:clamp(34px,5vw,60px);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-  .stats .row{display:grid;grid-template-columns:repeat(5,1fr)}
+  .stats .row{display:grid;grid-template-columns:repeat(3,1fr)}
   .stat{padding:22px 18px;border-left:1px solid var(--rule)}
   .stat:first-child{border-left:0;padding-left:0}
   .stat .k{font-family:var(--serif);font-size:1.5rem;line-height:1;color:var(--ink)}
@@ -163,6 +165,10 @@
   .map-card iframe{width:100%;height:330px;border:0;display:block;filter:saturate(.9)}
   .map-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;flex-wrap:wrap}
   .map-foot .addr{font-size:.9rem;color:rgba(246,241,231,.8);font-family:var(--mono);letter-spacing:.02em}
+  .map-toggle{display:flex;gap:8px;padding:14px 18px 0}
+  .map-toggle button{font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.01em;color:rgba(246,241,231,.78);background:transparent;border:1px solid rgba(246,241,231,.22);border-radius:999px;padding:7px 15px;cursor:pointer;transition:color .25s var(--ease),border-color .25s var(--ease),background .25s var(--ease)}
+  .map-toggle button:hover{color:var(--paper);border-color:rgba(246,241,231,.4)}
+  .map-toggle button.active{color:var(--ink);background:var(--gold-br);border-color:var(--gold-br)}
 
   /* ===== apply ===== */
   .apply{background:var(--paper-deep)}
@@ -292,7 +298,7 @@
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Gruber Management home">
       <span class="name">Gruber Management</span>
-      <span class="sub">Ann Arbor · Est. 50 Years</span>
+      <span class="sub">Ann Arbor · 50+ Years</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a class="lk" href="#residences">Residences</a>
@@ -330,10 +336,11 @@
       </div>
       <div class="hero-figure reveal in d2">
         <span class="hero-vlabel">A half-century on campus</span>
-        <div class="frame">
-          <img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/3fdd833a-a811-4fc7-8013-897b5c4325de/IMG_5306.JPG?format=1200w" alt="Apartment building at 625 South Forest in Ann Arbor" onerror="this.style.display='none'">
+        <div class="frame xfade" id="heroFrame">
+          <img class="on" src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/3fdd833a-a811-4fc7-8013-897b5c4325de/IMG_5306.JPG?format=1200w" alt="Apartment building at 625 South Forest in Ann Arbor" onerror="this.style.display='none'">
+          <img src="https://images.squarespace-cdn.com/content/v1/698b4a223bee396b0f14f959/8e0f55d7-2817-4a0c-89cd-35171c856f08/IMG_1787.JPG?format=1200w" alt="Apartment building at 507 Hill in Ann Arbor" onerror="this.style.display='none'">
         </div>
-        <div class="hero-tag">
+        <div class="hero-tag" id="heroTag">
           <div class="t1">Featured · Central Campus</div>
           <div class="t2">625 South Forest · 2–3 BR</div>
         </div>
@@ -344,10 +351,8 @@
     <div class="stats reveal">
       <div class="row">
         <div class="stat"><div class="k">50 yrs</div><div class="v">Family-owned in Ann Arbor</div></div>
-        <div class="stat"><div class="k">2</div><div class="v">Buildings near campus</div></div>
         <div class="stat"><div class="k">Parking</div><div class="v">On-site &amp; covered</div></div>
         <div class="stat"><div class="k">9-mo</div><div class="v">Lease terms available</div></div>
-        <div class="stat"><div class="k">Match</div><div class="v">Roommate matching</div></div>
       </div>
     </div>
   </div>
@@ -448,15 +453,19 @@
         <ul class="walk">
           <li><span class="min">~5 min</span><span class="pl">Walk to the Diag &amp; Central Campus</span></li>
           <li><span class="min">~2 min</span><span class="pl">South University shops &amp; dining</span></li>
-          <li><span class="min">~10 min</span><span class="pl">Downtown &amp; Main Street restaurants</span></li>
+          <li><span class="min">~7 min</span><span class="pl">Downtown &amp; Main Street restaurants</span></li>
           <li><span class="min">Nearby</span><span class="pl">Law Quad, Ross School, UMMA, bus routes</span></li>
         </ul>
       </div>
       <div class="map-card reveal d1">
-        <iframe title="Map of 625 South Forest, Ann Arbor" loading="lazy" src="https://www.google.com/maps?q=625%20South%20Forest%20Ave,%20Ann%20Arbor,%20MI%2048104&output=embed"></iframe>
+        <div class="map-toggle" role="group" aria-label="Choose a building to map">
+          <button type="button" class="active" data-map="forest" aria-pressed="true">625 South Forest</button>
+          <button type="button" data-map="hill" aria-pressed="false">507 Hill</button>
+        </div>
+        <iframe id="mapFrame" title="Map of 625 South Forest, Ann Arbor" loading="lazy" src="https://www.google.com/maps?q=625%20South%20Forest%20Ave,%20Ann%20Arbor,%20MI%2048104&output=embed"></iframe>
         <div class="map-foot">
-          <span class="addr">625 South Forest · Ann Arbor, MI 48104</span>
-          <a class="btn btn-gold btn-sm" href="https://www.google.com/maps/search/?api=1&query=625+South+Forest+Ave+Ann+Arbor+MI+48104" target="_blank" rel="noopener">Get directions ↗</a>
+          <span class="addr" id="mapAddr">625 South Forest · Ann Arbor, MI 48104</span>
+          <a class="btn btn-gold btn-sm" id="mapDir" href="https://www.google.com/maps/search/?api=1&query=625+South+Forest+Ave+Ann+Arbor+MI+48104" target="_blank" rel="noopener">Get directions ↗</a>
         </div>
       </div>
     </div>
@@ -503,7 +512,7 @@
     </div>
     <div class="rep-cta reveal">
       <span class="stars">★★★★★</span>
-      <a class="btn btn-gold" href="https://www.google.com/search?q=gruber+management+ann+arbor+reviews" target="_blank" rel="noopener">Read our Google reviews ↗</a>
+      <a class="btn btn-gold" href="https://www.google.com/search?q=gruber+management+ann+arbor+reviews#lrd=0x883cae45048c472f:0xd951267b149a3421,1,,,," target="_blank" rel="noopener">Read our Google reviews ↗</a>
       <a class="btn btn-ghost" href="https://www.facebook.com/grubermgt" target="_blank" rel="noopener">Visit us on Facebook</a>
     </div>
   </div>
@@ -528,7 +537,7 @@
         </div>
         <div class="socials">
           <a href="https://www.facebook.com/grubermgt" target="_blank" rel="noopener">Facebook ↗</a>
-          <a href="https://www.google.com/search?q=gruber+management+ann+arbor+reviews" target="_blank" rel="noopener">Google Reviews ↗</a>
+          <a href="https://www.google.com/search?q=gruber+management+ann+arbor+reviews#lrd=0x883cae45048c472f:0xd951267b149a3421,1,,,," target="_blank" rel="noopener">Google Reviews ↗</a>
         </div>
       </div>
       <div class="reveal d1">
@@ -560,7 +569,7 @@
     <div class="foot-top">
       <div class="brand">
         <span class="name" style="font-size:1.5rem">Gruber Management</span>
-        <span class="sub" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)">Ann Arbor · Est. 50 Years</span>
+        <span class="sub" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)">Ann Arbor · 50+ Years</span>
       </div>
       <div class="foot-links">
         <a href="#residences">Residences</a>
@@ -677,6 +686,68 @@
     else if(e.key==='ArrowLeft') step(-1);
     else if(e.key==='ArrowRight') step(1);
   });
+
+  // ---- hero featured crossfade ----
+  var heroFrame = document.getElementById('heroFrame'), heroTag = document.getElementById('heroTag');
+  if(heroFrame && heroTag){
+    var heroImgs = heroFrame.querySelectorAll('img');
+    var heroStates = [
+      {t1:'Featured · Central Campus', t2:'625 South Forest · 2–3 BR'},
+      {t1:'Featured · Hill Street', t2:'507 Hill · 1 BR'}
+    ];
+    var heroI = 0, heroTimer = null;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function heroShow(i){
+      heroI = i;
+      for(var k=0;k<heroImgs.length;k++){ heroImgs[k].classList.toggle('on', k===i); }
+      heroTag.querySelector('.t1').textContent = heroStates[i].t1;
+      heroTag.querySelector('.t2').textContent = heroStates[i].t2;
+    }
+    function heroStart(){ if(heroTimer || reduce) return; heroTimer = setInterval(function(){ heroShow((heroI+1)%heroStates.length); }, 4500); }
+    function heroStop(){ if(heroTimer){ clearInterval(heroTimer); heroTimer=null; } }
+    if(reduce){
+      heroShow(0); // show State A statically, no auto-cycle
+    } else {
+      heroStart();
+      heroFrame.addEventListener('mouseenter', heroStop);
+      heroFrame.addEventListener('mouseleave', heroStart);
+    }
+  }
+
+  // ---- neighborhood map toggle ----
+  var mapFrame = document.getElementById('mapFrame'), mapAddr = document.getElementById('mapAddr'), mapDir = document.getElementById('mapDir');
+  var MAPS = {
+    forest: {
+      src:'https://www.google.com/maps?q=625%20South%20Forest%20Ave,%20Ann%20Arbor,%20MI%2048104&output=embed',
+      dir:'https://www.google.com/maps/search/?api=1&query=625+South+Forest+Ave+Ann+Arbor+MI+48104',
+      addr:'625 South Forest · Ann Arbor, MI 48104',
+      title:'Map of 625 South Forest, Ann Arbor'
+    },
+    hill: {
+      src:'https://www.google.com/maps?q=507%20Hill%20St,%20Ann%20Arbor,%20MI%2048104&output=embed',
+      dir:'https://www.google.com/maps/search/?api=1&query=507+Hill+St+Ann+Arbor+MI+48104',
+      addr:'507 Hill · Ann Arbor, MI 48104',
+      title:'Map of 507 Hill, Ann Arbor'
+    }
+  };
+  var mapBtns = document.querySelectorAll('.map-toggle button');
+  if(mapFrame && mapBtns.length){
+    Array.prototype.forEach.call(mapBtns, function(btn){
+      btn.addEventListener('click', function(){
+        var key = btn.getAttribute('data-map'); var m = MAPS[key];
+        if(!m) return;
+        mapFrame.src = m.src;
+        mapFrame.title = m.title;
+        if(mapAddr) mapAddr.textContent = m.addr;
+        if(mapDir) mapDir.href = m.dir;
+        Array.prototype.forEach.call(mapBtns, function(b){
+          var on = b===btn;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      });
+    });
+  }
 
   // ---- scroll reveal ----
   var revs = document.querySelectorAll('.reveal');
